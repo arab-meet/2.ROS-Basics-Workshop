@@ -11,25 +11,23 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 
 #up-to-date
 sudo apt update
-
+echo "####################################################################"
 PS3="Please select an option (1, 2, or 3): "
-echo "1-Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages"
-echo "2-Desktop Install: Everything in ROS-Base plus tools like rqt and rviz"
-echo "3-ROS-Base: (Bare Bones) ROS packaging, build, and communication libraries. No GUI tools."
-options=("Option 1" "Option 2" "Option 3")
+
+options=("1-Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages" "2-Desktop Install: Everything in ROS-Base plus tools like rqt and rviz" "3-ROS-Base: (Bare Bones) ROS packaging, build, and communication libraries. No GUI tools.")
 select opt in "${options[@]}"; do
     case $opt in
-        "Option 1")
+        "1-Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages")
             echo "You chose desktop-full"
             sudo apt install ros-noetic-desktop-full
             break
             ;;
-        "Option 2")
+        "2-Desktop Install: Everything in ROS-Base plus tools like rqt and rviz")
             echo "You chose desktop"
             sudo apt install ros-noetic-desktop
             break
             ;;
-        "Option 3")
+        "3-ROS-Base: (Bare Bones) ROS packaging, build, and communication libraries. No GUI tools.")
             echo "You chose base"
             sudo apt install ros-noetic-ros-base
             break
