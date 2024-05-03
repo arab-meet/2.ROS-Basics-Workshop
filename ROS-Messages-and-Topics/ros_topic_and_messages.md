@@ -1,24 +1,31 @@
-# Table of Contents
+# ROS Node, Topic, Massage
+
+Author: Sherif Fathey
+
+Review : KG
+
+## Table of Contents
 
 - [Ros Nodes](#ros-nodes)
 - [Ros Topics](#ros-topics)
 - [Ros Messages](#ros-messages)
 
-# Ros Nodes
-
-
-<p align="center">
-<img src="images/node.gif">
+## ROS Nodes
 
 **`Nodes`** are executables that can communicate with other processes using topics,
 services, or the Parameter Server.
 
 Using nodes in ROS provides us with fault tolerance and separates the code and functionalities making the system simpler.
 
-A node **`must`** have a **`unique`** name in the system. This name is used to permit the
+A node `must` have a `unique` name in the system. This name is used to permit the
 node to communicate with another node using its name without ambiguity.
 
-A node can be written using different libraries such as roscpp and rospy; roscpp is for C++ and rospy is for Python. Throughout this book, we will be using roscpp.
+A `node` can be written using different libraries such as roscpp and rospy; roscpp is for C++ and rospy is for Python. Throughout this book, we will be using roscpp.
+
+<p align="center">
+<img src="images/node.gif">
+
+
 
 ROS has tools to handle nodes and give us information about it such as rosnode.
 The tool rosnode is a command-line tool for displaying information about nodes,
@@ -64,7 +71,7 @@ rosnode list
 
 The preceding command line prints the following information:
 
-```
+```bash
 /rosout
 /teleop_turtle
 /turtlesim
@@ -179,7 +186,7 @@ Services:
 This means that the first node is publishing a topic that the second node can
 subscribe it.
 
-# Ros Topics
+## ROS Topics
 
 Topics are **`pathways`** used by nodes to **`transmit data`**.
 
@@ -211,7 +218,7 @@ This tool has the following parameters:
 - **`rostopic type /topic`**: This prints the topic type, that is, the type
   of message it publishes.
 
-## Publishers:
+## Publishers
 
 Publishers are nodes that send messages to a specific topic.
 Publishers create and send messages at a certain rate or in response to specific events.
@@ -220,7 +227,7 @@ They are responsible for generating data or information to be shared with other 
 
 Publishers use the **`rospy.Publisher()`** (for **Python**) or **`ros::Publisher`** (for **C++**) API to advertise the topic they will publish to.
 
-## Subscribers:
+## Subscribers
 
 Subscribers are nodes that receive messages from a specific topic.
 
@@ -318,9 +325,7 @@ angular:
 
 ## [Exmaple To Creating Publisher and Subscriber](source/exmaple_pub_sub.md)
 
-
-
-# Ros Messages
+## Ros Messages
 
 A node sends information to another node using messages that are published
 by topics.
@@ -392,11 +397,10 @@ float32 linear_velocity
 float32 angular_velocity
 ```
 
-
 ### [Exmaple To Creating custom messages_sensor](source/example_custom_message_sensor.md)
 
-
 ### [Exmaple To Creating custom messages_robot](source/example_custom_message_robot.md)
+
 ---
 
 ### [Topic Task](source/task_1_pub_sub/topic_task.md)
