@@ -24,7 +24,7 @@ Unlike topics, services have no publishers or subscribers.
 
 ROS has two command-line tools to work with services, **`rossrv`** and **`rosservice`** .
 
-With rossrv , we can see information about the services' data structure, and it has
+With rossrv , we can see information about the services data structure, and it has
 the exact same usage as rosmsg .
 With rosservice , we can list and query services. The commands supported are
 as follows: 
