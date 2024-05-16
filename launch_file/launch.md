@@ -175,7 +175,7 @@ rqt_graph
 ```
 The GUI screen will appear.
 
-![rqt_graph](media/rqt_graph.png)
+![rqt_graph](./media/rqt_graph.png)
 
 ### rqt_graph_console
 rqt_graph_console is a viewer within the rqt package that displays messages being published to rosout.
@@ -186,7 +186,7 @@ rqt_console
 ```
 The GUI screen will appear.
 
-![rqt_console](media/rqt_console.png)
+![rqt_console](./media/rqt_console.png)
 
 ---
 
