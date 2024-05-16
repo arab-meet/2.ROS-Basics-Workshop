@@ -14,8 +14,4 @@ server and also several other nodes can be started .
 ## [B - ROS Bags](rosbag/bag_file.md)
 
 
-**`ROS Node`**: A computational unit in ROS that can communicate by publishing or subscribing to topics, providing or using services, and accessing the parameter server.
-
-**`ROS Topic`**: A named channel for communication between ROS nodes, allowing asynchronous message passing. Nodes can publish messages to topics or subscribe to receive messages from topics.
-
-**`ROS Message (Msg)`**: A data structure used to represent information exchanged between ROS nodes on topics. Messages are defined in .msg files and specify the format and content of data being transmitted.
+This is a set of tools for recording from and playing back to ROS topics. It is intended to be high performance and avoids deserialization and reserialization of the messages.
