@@ -69,7 +69,7 @@ Also it can include other launch files in your launch file
 
 ```XML
 <!-- example -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include file="$(find pkg_name)/launch/your_launch_file.launch">
 
   </include>
 ```
