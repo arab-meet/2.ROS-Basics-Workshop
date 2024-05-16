@@ -4,8 +4,12 @@
 
 ## [A - ROS Launch File](launch_file/launch.md)
 
-The Robot Operating System (**ROS**) is an open-source, meta-operating system designed to provide a structured framework for robotics software development. It offers a collection of tools and libraries to help in creating complex and robust robot behavior across a wide variety of robotic platforms. ROS facilitates hardware abstraction, low-level device control, and implementation of commonly-used functionality, which streamlines the process of building and programming robots. It's widely used in research and industry, providing a rich set of capabilities for robot developers
-
+The launch files are ROS tools that allows the creation of a list with all the functionalities that
+we want to start together with a single command.
+As we already noticed at this point of the course, several commands must be executed in several terminals.
+For example, one need to start the ROS master.
+So with the command the ROS core, then it might be also useful to load some parameters into the parameter
+server and also several other nodes can be started .
 
 ## [B - ROS Messages and Topics](ROS-Messages-and-Topics/ros_topic_and_messages.md)
 
