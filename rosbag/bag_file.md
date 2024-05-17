@@ -13,13 +13,13 @@ Reviewed By: Mo3taz
 ### Recording  data
 
 - Frist you need to run your node or package to publish the data in topic
-1.
+
 ```bash
 roscore
 ```
 ![roscore](images/roscore.png)
 
-2.
+
 ```bash
 rosrun turtlesim turtlesim_node
 ```
@@ -78,13 +78,13 @@ rosbag info 2024-02-25-23-02-13.bag
 
 **To replay the bag file to reproduce the behavior in the running system:**
 - Start `turtlesim_node`
-1.
+
 ```bash
 roscore
 ```
 ![roscore](images/roscore.png)
 
-2.
+
 ```bash
 rosrun turtlesim turtlesim_node
 ```
