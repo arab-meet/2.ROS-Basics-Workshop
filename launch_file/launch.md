@@ -165,7 +165,6 @@ after runnning launch file use this command
 ```bash
 rqt_console
 ```
-The GUI screen will appear.
 
 ![rqt_console](./images/rqt_console.png)
 
@@ -178,7 +177,6 @@ after runnning launch file use this command
 ```bash
 rqt_graph
 ```
-The GUI screen will appear.
 
 ![rqt_graph](./images/rqt_graph.png)
 
