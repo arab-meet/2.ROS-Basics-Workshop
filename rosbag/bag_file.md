@@ -3,27 +3,21 @@
 Author : Mahmoud Okasha
 
 Reviewed By: Mo3taz
-## ROS Bag
-- A bag is a file format in ROS for storing ROS message
-data.
 
-- The rosbag command can record, replay, and
-manipulate bags.
+## What is a ROS bag file 
+- bag file stores the data published into topics , you can then replay this data in order to reproduce the same result that you get. 
 
-### Recording and playing back data
+- Recording topics is also a great way to share your work and allow others to recreate it and if you have problem in your package you can share the bag file with other Engineers to test your package.
 
-record data from a running ROS system into a `.bag` file, and then
-playback the data to produce similar behavior in a running
-system.
 
-**Record data from a running Turtlesim system into a .bag file**
+### Recording  data
 
-- Start `turtlesim_node` and `turtle_teleop_key`
+- Frist you need to run your node or package to publish the data in topic
 1.
 ```bash
 roscore
 ```
-![roscore](images1/roscore.png)
+![roscore](images/roscore.png)
 
 2.
 ```bash
@@ -31,20 +25,46 @@ rosrun turtlesim turtlesim_node
 ```
 ![turtlesim_node](images1/turtlesim_node.png)
 
-3.
+- Second start record
+``-a`` that mean start record all topics
+
+```bash
+rosbag record -a
+```
+Record a bag file with the contents of the ``specified topics``.
+
+```bash
+rosbag record rosout tf cmd_vel
+```
+
+Show the usage and exit.
+```bash
+rosbag record -h
+```
+![record -h](images/record-h.png)
+
+- Start `turtlesim_node` and `turtle_teleop_key`
+    - just to make turtlesim move and when we record you can see the same behavior 
+
 ```bash
 rosrun turtlesim turtle_teleop_key
 ```
 ![turtle_teleop_key](images1/turtle_teleop.png)
 
-- Record data, make a temporary directory
 ```bash
 mkdir bagfile_temp
 cd bagfile_temp
 rosbag record -a
 ```
-and start to move `turtlesim` by `turtle_teleop_key` like this photo below
-![bag_record](images1/bag_recored.png)
+
+- If you want to end the record press ``ctrl + c``
+
+### demo turtle sim with bag file record
+
+![turtlesim with bag file](images/demo_turtle_bag_record.gif)
+
+- after you recored what you want now you can share your bag with other 
+
 
 - Examining and playing the bag file
 
@@ -82,3 +102,7 @@ rosbag play 2024-02-25-23-02-13.bag
 ```bash
 rosbag play -r 2 2024-02-25-23-02-13.bag
 ```
+
+### demo turtle sim with bag file record and play
+
+![turtlesim with bag file](images/demo_turtle_bag.gif)

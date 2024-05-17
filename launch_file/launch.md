@@ -12,12 +12,12 @@ there a better and faster way to run your nodes and other application related to
     <div style="text-align: center;">
         <h3>Normal Way</h3>
         <br>
-        <img src="./media/normal_way_run_node.gif" alt="First GIF" style="width: 80%;">
+        <img src="./images/normal_way_run_node.gif" alt="First GIF" style="width: 80%;">
     </div>
     <div style="text-align: center;">
         <h3>Launch file way/h3>
         <br>
-        <img src="./media/launch_file_way.gif" alt="Second GIF" style="width: 80%;">
+        <img src="./images/launch_file_way.gif" alt="Second GIF" style="width: 80%;">
     </div>
 </div>
 ### Launch files
@@ -139,7 +139,7 @@ if groub_1 is **false** include other file in our launch file and the content in
 </launch>
 ```
 ### Output is
-![Alt Text](./media/launch_test_tags.gif)
+![Alt Text](./images/launch_test_tags.gif)
 
 
 ```bash
@@ -175,7 +175,7 @@ rqt_graph
 ```
 The GUI screen will appear.
 
-![rqt_graph](./media/rqt_graph.png)
+![rqt_graph](./images/rqt_graph.png)
 
 ### rqt_graph_console
 rqt_graph_console is a viewer within the rqt package that displays messages being published to rosout.
@@ -186,7 +186,7 @@ rqt_console
 ```
 The GUI screen will appear.
 
-![rqt_console](./media/rqt_console.png)
+![rqt_console](./images/rqt_console.png)
 
 ---
 
