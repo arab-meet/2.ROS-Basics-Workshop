@@ -23,7 +23,7 @@ roscore
 ```bash
 rosrun turtlesim turtlesim_node
 ```
-![turtlesim_node](images1/turtlesim_node.png)
+![turtlesim_node](images/turtlesim_node.png)
 
 - Second start record
 ``-a`` that mean start record all topics
@@ -49,7 +49,7 @@ rosbag record -h
 ```bash
 rosrun turtlesim turtle_teleop_key
 ```
-![turtle_teleop_key](images1/turtle_teleop.png)
+![turtle_teleop_key](images/turtle_teleop.png)
 
 ```bash
 mkdir bagfile_temp
@@ -74,7 +74,7 @@ rosbag record -a
 cd bagfile_temp/
 rosbag info 2024-02-25-23-02-13.bag
 ```
-![rosbag info](images1/rosbag_info.png)
+![rosbag info](images/rosbag_info.png)
 
 **To replay the bag file to reproduce the behavior in the running system:**
 - Start `turtlesim_node`
@@ -82,20 +82,20 @@ rosbag info 2024-02-25-23-02-13.bag
 ```bash
 roscore
 ```
-![roscore](images1/roscore.png)
+![roscore](images/roscore.png)
 
 2.
 ```bash
 rosrun turtlesim turtlesim_node
 ```
-![turtlesim_node](images1/turtlesim_node.png)
+![turtlesim_node](images/turtlesim_node.png)
 
 - Replay the bag file
 ```bash
 cd bagfile_temp/
 rosbag play 2024-02-25-23-02-13.bag
 ```
-![rosbag play](images1/rosbag_play.png)
+![rosbag play](images/rosbag_play.png)
 
 >**note:** If you want to replay the bag file with different rate use this command below.
 
