@@ -17,9 +17,6 @@ Reviewed By: Mo3taz
 ```bash
 roscore
 ```
-![roscore](images/roscore.png)
-
-
 ```bash
 rosrun turtlesim turtlesim_node
 ```
@@ -49,7 +46,6 @@ rosbag record -h
 ```bash
 rosrun turtlesim turtle_teleop_key
 ```
-![turtle_teleop_key](images/turtle_teleop.png)
 
 ```bash
 mkdir bagfile_temp
@@ -82,13 +78,10 @@ rosbag info 2024-02-25-23-02-13.bag
 ```bash
 roscore
 ```
-![roscore](images/roscore.png)
-
 
 ```bash
 rosrun turtlesim turtlesim_node
 ```
-![turtlesim_node](images/turtlesim_node.png)
 
 - Replay the bag file
 ```bash
