@@ -15,11 +15,12 @@ there a better and faster way to run your nodes and other application related to
         <img src="./images/normal_way_run_node.gif" alt="First GIF" style="width: 80%;">
     </div>
     <div style="text-align: center;">
-        <h3>Launch file way/h3>
+        <h3>Launch file way</h3>
         <br>
         <img src="./images/launch_file_way.gif" alt="Second GIF" style="width: 80%;">
     </div>
 </div>
+
 ### Launch files
 
 The launch files are ROS tools that allows the creation of a list of node  with all the functionalities that
@@ -155,17 +156,21 @@ rosnode list
 
 Commonly Used rqt Plugins:
 
-`rqt_bag`: A tool for inspecting and replaying ROS bag files.
 
 `rqt_console`: Displays log messages from ROS nodes.
 
+rqt_graph_console is a viewer within the rqt package that displays messages being published to rosout.
+
+after runnning launch file use this command
+```bash
+rqt_console
+```
+The GUI screen will appear.
+
+![rqt_console](./images/rqt_console.png)
+
+
 `rqt_graph`: Visualizes the ROS computation graph.
-
-`rqt_logger_level`: Adjusts the logging level of ROS nodes.
-
-`rqt_plot`: Plots data from ROS topics for debugging and analysis2.
-
-### rqt_graph
 
 rqt_graph displays the relationships between active nodes and the messages transmitted across the ROS network.
 
@@ -177,16 +182,23 @@ The GUI screen will appear.
 
 ![rqt_graph](./images/rqt_graph.png)
 
-### rqt_graph_console
-rqt_graph_console is a viewer within the rqt package that displays messages being published to rosout.
+`rqt_graph`: Plots data from ROS topics for debugging and analysis it.
+rqt_plot provides a GUI plugin visualizing numeric values in a 2D plot using different plotting backends.
 
-after runnning launch file use this command
 ```bash
-rqt_console
+rqt_plot
 ```
-The GUI screen will appear.
 
-![rqt_console](./images/rqt_console.png)
+![rqt_plot](./images/rqt_plot.png)
+
+
+`rqt_bag`: A tool for indisplaying and replaying ROS bag files.
+
+```bash
+rqt_bag
+```
+
+![rqt_bag](./images/rqt_bag.png)
 
 ---
 
