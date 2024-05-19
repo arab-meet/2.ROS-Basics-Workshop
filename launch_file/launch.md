@@ -1,7 +1,7 @@
 # ROS Launch Files 
-Author : Mahmoud Okasha
+Author : Mahmoud Okasha and Mo3taz
 
-Reviewed By: Mo3taz
+Reviewed By: KG
 ## ROS Launch
 If you lazy person like me and you don't want run every node every time 
 there a better and faster way to run your nodes and other application related to ros like gazebo and rviz and load URDF models, all this with one line 

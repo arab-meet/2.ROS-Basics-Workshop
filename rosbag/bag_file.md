@@ -1,8 +1,8 @@
 
 # ROS Bag
-Author : Mahmoud Okasha
+Author : Mahmoud Okasha and Mo3taz
 
-Reviewed By: Mo3taz
+Reviewed By: KG
 
 ## What is a ROS bag file 
 - bag file stores the data published into topics , you can then replay this data in order to reproduce the same result that you get. 
