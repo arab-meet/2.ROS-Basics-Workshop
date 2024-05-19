@@ -1,4 +1,0 @@
-<launch>
-    <node name="basic_simple_talker" pkg="light_robot" type="publisher.py" output="screen" />
-    <node name="basic_simple_listener" pkg="light_robot" type="subscriber.py" output="screen"/>
-</launch>
