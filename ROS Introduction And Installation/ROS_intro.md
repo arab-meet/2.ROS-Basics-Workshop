@@ -58,7 +58,6 @@ At the Filesystem Level, ROS resources are organized on disk as follows:
     ROS Workspace is a concept that helps organize your Robot Operating System (ROS) projects. Think of it as a designated folder where you manage related pieces of ROS code.
 
     The official name for workspaces in ROS is `catkin workspaces`.
-
     
     * ###   Creating a ROS Workspace
 
@@ -126,7 +125,6 @@ At the Filesystem Level, ROS resources are organized on disk as follows:
                 <p align="center">
                 <img src="images/cmakelist.png"> 
 
-
         - **`package.xml`** &rarr; provides metadata about the package, including its name, version, description, dependencies, maintainers, and licensing information.
                 The package.xml file defines the properties of the
             package:
@@ -165,12 +163,6 @@ At the Filesystem Level, ROS resources are organized on disk as follows:
         <img src="images/ros_Pkgs.png">
 
         ------ 
-
-
-
-
-
-
 
     * ### ROS Package Example
 
