@@ -164,6 +164,7 @@ used to visualizing `frames` and `relation` between this frames and which node p
 - see if the right node publish frame or not.
 
 ![rqt_tf_tree](./images/tf_tree_one.jpg)
+![rqt_tf_tree_right](./images/tf_tree_right.png)
 
 
 `rqt_console`: Displays log messages from ROS nodes.
