@@ -28,7 +28,7 @@ rosrun turtlesim turtlesim_node
 ```bash
 rosbag record -a
 ```
-Record a bag file with the contents of the ``specified topics``.
+Or Record a bag file with the contents of the ``specified topics``.
 
 ```bash
 rosbag record rosout tf cmd_vel

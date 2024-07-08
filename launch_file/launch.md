@@ -156,6 +156,15 @@ rosnode list
 
 Commonly Used rqt Plugins:
 
+`rqt_tf_tree`: 
+used to visualizing `frames` and `relation` between this frames and which node publish this frames
+
+- it is very important tool that allow you to see is there any problem in frames or it good.
+
+- see if the right node publish frame or not.
+
+![rqt_tf_tree](./images/tf_tree_one.jpg)
+
 
 `rqt_console`: Displays log messages from ROS nodes.
 
