@@ -22,8 +22,6 @@
         <!-- stuff that will only be evaluated if groub_1 is false -->
     <!-- here include other launch file  -->
     <include file="$(find light_robot)/launch/pubsub1.launch"/>
-
-    <remap from="/stringTopic" to="/stringTopicunlessRemapped"/>
             
             <!-- load param_1 with value 100 in rosparam server -->
     <param name="param_1" value="10"/>
