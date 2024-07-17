@@ -136,7 +136,8 @@ if groub_1 is **false** include other file in our launch file and the content in
         <!-- stuff that will only be evaluated if groub_1 is false -->
     <!-- here include other launch file  -->
     <include file="$(find light_robot)/launch/pubsub1.launch"/>
-            
+    </group>
+
 </launch>
 ```
 ### Output is
