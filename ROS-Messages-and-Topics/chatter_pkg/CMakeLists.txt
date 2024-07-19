@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(ros_topic_and_messages_pkg)
+project(chatter_pkg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,9 +8,8 @@ project(ros_topic_and_messages_pkg)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  roscpp
   rospy
+  roscpp
   std_msgs
 )
 
@@ -48,12 +47,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
- add_message_files(
-   FILES
-   SensorData.msg
-   Position.msg
+# add_message_files(
+#   FILES
+#   Message1.msg
 #   Message2.msg
- )
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -70,10 +68,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
- generate_messages(
-   DEPENDENCIES
-   std_msgs
- )
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -105,10 +103,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES ros_topic_and_messages_pkg
-#  CATKIN_DEPENDS message_generation roscpp rospy std_msgs
-#  DEPENDS system_lib
+  CATKIN_DEPENDS rospy roscpp std_msgs
 )
 
 ###########
@@ -118,70 +113,27 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
   ${catkin_INCLUDE_DIRS}
 )
 
-## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/ros_topic_and_messages_pkg.cpp
-# )
-
-## Add cmake target dependencies of the library
-## as an example, code may need to be generated before libraries
-## either from message generation or dynamic reconfigure
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
 ## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
- add_executable(publish_robot src/publish_robot.cpp)
- add_executable(subscribe_robot src/subscribe_robot.cpp)
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
 
- add_executable(publish_robot_data src/publish_robot_data.cpp)
- add_executable(subscribe_robot_data src/subscribe_robot_data.cpp)
-## Rename C++ executable without prefix
-## The above recommended prefix causes long target names, the following renames the
-## target back to the shorter version for ease of user use
-## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
-# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
-
-## Add cmake target dependencies of the executable
-## same as for the library above
- add_dependencies(publish_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- add_dependencies(subscribe_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
- add_dependencies(publish_robot_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- add_dependencies(subscribe_robot_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-## Specify libraries to link a library or executable target against
-
- target_link_libraries(publish_robot
-   ${catkin_LIBRARIES}
- )
- target_link_libraries(subscribe_robot
-   ${catkin_LIBRARIES}
- )
-
- target_link_libraries(publish_robot_data
- ${catkin_LIBRARIES}
-)
-target_link_libraries(subscribe_robot_data
- ${catkin_LIBRARIES}
-)
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
 
 #############
 ## Install ##
 #############
 
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
-
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  src/talker.py
+  src/listener.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
@@ -216,7 +168,7 @@ target_link_libraries(subscribe_robot_data
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_ros_topic_and_messages_pkg.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_chatter_pkg.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

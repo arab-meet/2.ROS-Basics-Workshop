@@ -344,7 +344,6 @@ The accepted parameters are as follows:
 - **rosmsg list**: This lists all the messages
 - **rosmsg package**: This lists all the messages in a package
 - **rosmsg packages**: This lists all packages that have the message
-- **rosmsg users**: This searches for code files that use the message type
 - **rosmsg md5**: This displays the MD5 sum of a message
 
 The message definition can consist of two types: **`fields`** and **`constants`** . The field is
@@ -397,6 +396,76 @@ float32 linear_velocity
 float32 angular_velocity
 ```
 
+If you want to list the **`message`** of **`turtlesim`** fields, you can do it with the following command lines:
+
+```bash
+rosmsg package turtlesim
+```
+
+The preceding command line prints the following information:
+
+```bash
+turtlesim/Color
+turtlesim/Pose
+```
+If you want to list the **`message`** of **`All`** fields, you can do it with the following command lines:
+
+```bash
+rosmsg list 
+```
+
+The preceding command line prints the following information as it will show all the massages for all pkgs:
+
+```bash
+actionlib/TestAction
+actionlib/TestActionFeedback
+actionlib/TestActionGoal
+actionlib/TestActionResult
+actionlib/TestFeedback
+actionlib/TestGoal
+show more ...
+```
+
+If you want to list the **`All packages`** that contains massages, you can do it with the following command lines:
+
+```bash
+rosmsg packages turtlesim
+```
+
+The preceding command line prints the following information:
+
+```bash
+actionlib
+actionlib_msgs
+actionlib_tutorials
+bond
+control_msgs
+diagnostic_msgs
+dynamic_reconfigure
+geometry_msgs
+map_msgs
+nav_msgs
+roscpp
+rosgraph_msgs
+rospy_tutorials
+sensor_msgs
+shape_msgs
+smach_msgs
+std_msgs
+stereo_msgs
+tf
+tf2_msgs
+trajectory_msgs
+turtle_actionlib
+turtlesim
+visualization_msgs
+```
+### [Exmaple 1 To Creating custom messages_robot](source/example_custom_message_robot.md)
+### [Exmaple 2 To Creating custom messages_sensor](source/example_custom_message_sensor.md)
+
+
+
+---
 ## ROS Publishers and Subscribers
 
 ## Publishers
@@ -427,11 +496,7 @@ Subscribers are nodes that receive messages from a specific topic. They process 
 
 ---
 
-### [Exmaple To Creating custom messages_sensor](source/example_custom_message_sensor.md)
 
-### [Exmaple To Creating custom messages_robot](source/example_custom_message_robot.md)
-
----
 
 ### [Topic Task](source/task_1_pub_sub/topic_task.md)
 
