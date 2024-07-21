@@ -15,10 +15,12 @@ catkin_create_pkg chatter_pkg std_msgs rospy roscpp
 
 #### **Create the Publisher Script**
 
-Navigate to the `src` directory of your package and create a Python script named `talker.py`
+Navigate to the `scripts` directory of your package and create a Python script named `talker.py`
 
 ```bash
-cd chatter_pkg/src
+cd chatter_pkg
+mkdir -p scripts
+cd scripts
 touch talker.py
 ```
 
@@ -60,11 +62,12 @@ chmod +x talker.py
 
 #### C++ Publisher
 
-1. **Create the Publisher Script**
+1. **Create the Publisher** 
 
 Navigate to the `src` directory of your package and create a C++ script named `talker.cpp`:
 
 ```bash
+cd chatter_pkg/src
 touch talker.cpp
 ```
 
@@ -121,7 +124,7 @@ target_link_libraries(talker ${catkin_LIBRARIES})
 
 #### **Create the Subscriber Script**
 
-Navigate to the `src` directory of your package and create a Python script named `listener.py`
+Navigate to the `scripts` directory of your package and create a Python script named `listener.py`
 
 ```bash
 touch listener.py
@@ -158,8 +161,6 @@ chmod +x listener.py
 ```
 
 ---
-
-
 
 #### C++ Subscriber
 
@@ -199,7 +200,6 @@ int main(int argc, char **argv)
 }
 
 ```
-
 
 3. **Edit the `CMakeLists.txt` File**
 
@@ -252,9 +252,17 @@ Or your C++ subscriber node:
 rosrun chatter_pkg listener
 ```
 
+
+
+## Expected Output
+
+Here is the expected output of the `talker.py` and `listener.py` nodes
+
+![1721589858831](image/exmaple_pub_sub/1721589858831.png)
+
+
+
 ---
-
-
 
 ![alt text](../images/6.png)
 
