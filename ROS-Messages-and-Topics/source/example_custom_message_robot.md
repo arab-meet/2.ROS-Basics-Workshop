@@ -2,8 +2,7 @@
 
 **Description:**
 
-    In this example we will create a package to publish and subscribe data for a robot position with a (X,Yand theta) componnent. This nodes (publish & subscribe) can be preformed in Python and Cpp as shown below. 
-
+    In this example we will create a package to publish and subscribe data for a robot position with a (X,Yand theta) componnent. This nodes (publish & subscribe) can be preformed in Python and Cpp as shown below.
 
 ### **1-Create a ROS Package**
 
@@ -17,9 +16,9 @@ cd ~/catkin_ws/src
 catkin_create_pkg ros_topic_and_messages_pkg std_msgs rospy roscpp
 ```
 
-
 ### 2- Define a custom message :
-Let's say you want to create a custom message type for a sensor that measures temperature and humidity. 
+
+Let's say you want to create a custom message type for a sensor that measures temperature and humidity.
 Create a file named [Position.msg](../ros_topic_and_messages_pkg/msg/Position.msg) in your ROS package's [msg](../ros_topic_and_messages_pkg/msg) directory:
 
 ```bash
@@ -28,6 +27,7 @@ mkdir msg
 cd msg
 touch Position.msg
 ```
+
 And add the following text in the [Position.msg](../ros_topic_and_messages_pkg/msg/Position.msg) file.
 
 ```bash
@@ -36,8 +36,8 @@ float64 y
 float64 theta
 ```
 
-
 ### 3- Compile the message
+
 Make sure your [CMakeLists.txt ](../ros_topic_and_messages_pkg/CMakeLists.txt) contains the following lines to ensure that your custom message is compiled:
 
 ```Cpp
@@ -56,6 +56,7 @@ generate_messages(
   std_msgs
 )
 ```
+
 ### 4-Write publisher and subscriber nodes
 
 #### 1- Python Node
@@ -99,6 +100,7 @@ if __name__ == '__main__':
 
 
 ```
+
 [subscribe_robot ](../ros_topic_and_messages_pkg/script/subscribe_robot.py):
 
 ```bash
@@ -125,7 +127,7 @@ if __name__ == '__main__':
 
 ```
 
-####  Run the Package
+#### Run the Package
 
 * Open a terminal an run the roscore by the following command
 
@@ -152,7 +154,6 @@ rosrun rosrun ros_topic_and_messages_pkg subscriber_robot.py
 #### 2- CPP Node
 
 first creat a [src ](../ros_topic_and_messages_pkg/src) folder to create the .cpp file in it
-
 
 ```bash
 cd ~/catkin_ws/src/ros_topic_and_messages_pkg
@@ -192,10 +193,10 @@ int main(int argc, char** argv)
 
 [subscribe_robot ](../ros_topic_and_messages_pkg/src/):
 
-
 ```bash
 touch subscribe_robot.cpp
 ```
+
 ```cpp
 #include <ros/ros.h>
 #include <ros_topic_and_messages_pkg/Position.h>  
@@ -221,21 +222,21 @@ Edit the [CMakeLists.txt ](../ros_topic_and_messages_pkg/CMakeLists.txt) file by
 ```bash
  add_executable(publish_robot src/publish_robot.cpp)
  add_executable(subscribe_robot src/subscribe_robot.cpp)
- ```
+```
 
- ```bash
+```bash
  add_dependencies(publish_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
  add_dependencies(subscribe_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- ```
- ```bash
+```
+
+```bash
  target_link_libraries(publish_robot
    ${catkin_LIBRARIES}
  )
  target_link_libraries(subscribe_robot
    ${catkin_LIBRARIES}
  )
- ```
-
+```
 
 ### 5- Run the Package
 
@@ -261,10 +262,18 @@ source devel/setup.bash
 rosrun rosrun ros_topic_and_messages_pkg subscriber_robot
 ```
 
+
+
+## Expected Output
+
+Here is the expected output of this example
+
+![1721684692606](image/example_custom_message_robot/1721684692606.png)
+
+
+
 ![alt text](../images/7.png)
 
+## [&lt;- Exmaple 2 To Creating custom messages_sensor)](/ROS-Messages-and-Topics/source/example_custom_message_sensor.md)
 
-## [<- Exmaple 2 To Creating custom messages_sensor)](/ROS-Messages-and-Topics/source/example_custom_message_sensor.md)
-
-## [<-Back to main](../ros_topic_and_messages.md)
-
+## [&lt;-Back to main](../ros_topic_and_messages.md)

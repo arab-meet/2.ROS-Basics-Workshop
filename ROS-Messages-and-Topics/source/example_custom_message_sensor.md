@@ -1,26 +1,29 @@
-## [<- Exmaple 1 To Creating custom messages_robot](/ROS-Messages-and-Topics/source/example_custom_message_robot.md)
+## [&lt;- Exmaple 1 To Creating custom messages_robot](/ROS-Messages-and-Topics/source/example_custom_message_robot.md)
 
 **Note:** this example is continuation of the previous example.
 
 ## Example 2 (Creating custom messages for sensor data)
 
-
 #### 1- Define a custom message :
-Let's say you want to create a custom message type for a sensor that measures temperature and humidity. 
+
+Let's say you want to create a custom message type for a sensor that measures temperature and humidity.
 Create a file named [SensorData.msg](../ros_topic_and_messages_pkg/msg/SensorData.msg) in your ROS package's [msg](../ros_topic_and_messages_pkg/msg) directory:
 
 ```bash
 cd ~/catkin_ws/src/ros_topic_and_messages_pkg/msg
 touch SensorData.msg
 ```
+
 And add the following text in the [SensorData.msg](../ros_topic_and_messages_pkg/msg/SensorData.msg) file.
- 
+
 ```bash
 # SensorData.msg
 float32 temperature
 float32 humidity
 ```
+
 ### 2- Compile the message
+
 Make sure your `CMakeLists.txt` contains the following lines to ensure that your custom message is compiled:
 
 ```Cpp
@@ -39,6 +42,7 @@ generate_messages(
   std_msgs
 )
 ```
+
 ### 3-Write publisher and subscriber nodes
 
 #### 1- Python node:
@@ -49,6 +53,7 @@ In the [script ](../ros_topic_and_messages_pkg/script) file create a file named 
 cd ~/catkin_ws/src/ros_topic_and_messages_pkg/script
 touch publish_robot_data.py
 ```
+
 Add the below code in the file:
 
 ```py
@@ -77,14 +82,16 @@ if __name__ == '__main__':
         pass
 
 ```
+
 For the subsribe node create a file named by [subscribe_sensor_data.py](../ros_topic_and_messages_pkg/script/subscribe_sensor_data.py) in the [script ](../ros_topic_and_messages_pkg/script) folder using the following commands as shown:
 
 ```bash
 cd ~/catkin_ws/src/ros_topic_and_messages_pkg/script
 touch subscribe_robot_data.py
 ```
+
 Add the below code in the file:
- 
+
 ```py
 #!/usr/bin/env python3
 
@@ -103,7 +110,8 @@ if __name__ == '__main__':
     subscribe_sensor_data()
 
 ```
-####  Run the Package
+
+#### Run the Package
 
 * Open a terminal an run the roscore by the following command
 
@@ -126,6 +134,7 @@ cd /catkin_ws
 source devel/setup.bash
 rosrun rosrun ros_topic_and_messages_pkg subscriber_robot_data.py
 ```
+
 #### 2- CPP Node
 
 In the [src ](../ros_topic_and_messages_pkg/src) file create a file named by [publish_sensor_data.cpp](../ros_topic_and_messages_pkg/src/publish_sensor_data.cpp) by using the following commands:
@@ -134,6 +143,7 @@ In the [src ](../ros_topic_and_messages_pkg/src) file create a file named by [pu
 cd ~/catkin_ws/src/ros_topic_and_messages_pkg/rc
 touch publish_robot.cpp
 ```
+
 Add the below code in the file:
 
 ```cpp
@@ -169,12 +179,14 @@ int main(int argc, char** argv) {
 }
 
 ```
+
 For the subsribe node create a file named by [subscribe_sensor_data.cpp](../ros_topic_and_messages_pkg/src/subscribe_sensor_data.cpp) in the [src ](../ros_topic_and_messages_pkg/src) folder using the following commands as shown:
 
 ```bash
 cd ~/catkin_ws/src/ros_topic_and_messages_pkg/src
 touch subscribe_robot_data.cpp
 ```
+
 Add the below code in the file:
 
 ```cpp
@@ -204,20 +216,22 @@ Edit the [CMakeLists.txt ](../ros_topic_and_messages_pkg/CMakeLists.txt) file by
 ```bash
  add_executable(publish_robot_data src/publish_robot_data.cpp)
  add_executable(subscribe_robot_data src/subscribe_robot_data.cpp)
- ```
+```
 
- ```bash
+```bash
  add_dependencies(publish_robot_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
  add_dependencies(subscribe_robot_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- ```
- ```bash
+```
+
+```bash
  target_link_libraries(publish_robot_data
    ${catkin_LIBRARIES}
  )
  target_link_libraries(subscribe_robot_data
    ${catkin_LIBRARIES}
  )
- ```
+```
+
 ### 5- Run the Package
 
 * Open a terminal an run the roscore by the following command
@@ -242,7 +256,14 @@ source devel/setup.bash
 rosrun rosrun ros_topic_and_messages_pkg subscriber_robot_data
 ```
 
+
+
+## Expected Output
+
+Here is the expected output of this example
+
+![1721684771307](image/example_custom_message_sensor/1721684771307.png)
+
 ![alt text](../images/5.png)
 
-## [<-Back to main](../ros_topic_and_messages.md)
-
+## [&lt;-Back to main](../ros_topic_and_messages.md)
