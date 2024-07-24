@@ -7,7 +7,7 @@
 The Robot Operating System (**ROS**) is an open-source, meta-operating system designed to provide a structured framework for robotics software development. It offers a collection of tools and libraries to help in creating complex and robust robot behavior across a wide variety of robotic platforms. ROS facilitates hardware abstraction, low-level device control, and implementation of commonly-used functionality, which streamlines the process of building and programming robots. It's widely used in research and industry, providing a rich set of capabilities for robot developers
 
 
-## [B - ROS Messages and Topics](/ROS%20Messages%20And%20Topics/ros_topic_and_messages.md)
+## [B - ROS Messages and Topics](/ROS%20Messages%20and%20Topics/ros_topic_and_messages.md)
 
 
 **`ROS Node`**: A computational unit in ROS that can communicate by publishing or subscribing to topics, providing or using services, and accessing the parameter server.
