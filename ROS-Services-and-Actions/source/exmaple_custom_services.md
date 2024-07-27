@@ -4,20 +4,21 @@ In this guide, we'll walk through creating a simple service in ROS that computes
 
 ## 1- Creating custom service
 
-### 1.1- Define a custom services
+### 1.1- Define a custom service
 
 Define a service **`message`**: You need to define a service message that specifies the request and response types. Create a file named
 [Square.srv](../service_action_examples_package/srv/Square.srv) in the [**srv**](../service_action_examples_package/srv) directory of your package ,and define your custom service message.
 
 ```bash
 # Square.srv
-string input
+int64 number
 ---
-string output
+int64 square
+
 
 ```
 
-### 1.2- Update CmakeLists.txt
+### 1.2- Compile the message(Update CmakeLists.txt)
 
 - Make sure your **`CMakeLists.txt`** contains the following lines to ensure that your custom message is compiled:
 
@@ -150,7 +151,7 @@ if __name__ == "__main__":
 
 ### 3.1. Write Cpp server node
 
-[**square_server.**](../service_action_examples_package/scripts/square_server.py)cpp
+[**square_server.cpp**](../service_action_examples_package/src/square_server.cpp)
 
 ```cpp
 #include <ros/ros.h>
@@ -188,6 +189,7 @@ int main(int argc, char **argv)
 
 
 ### 3.1. Write Cpp client node
+[**square_client.cpp**](../service_action_examples_package/src/square_client.cpp)
 
 ```cpp
 #include <ros/ros.h>

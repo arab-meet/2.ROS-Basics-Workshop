@@ -1,7 +1,12 @@
-# Creating action server/clients
-## 1- Define a custom action services :
-Define a service **`message`**: You need to define a service message that specifies the request and response types. Create a file named [**Countdown.action**](../ros_server_pkg/action/Countdown.action) in the [**action**](../ros_server_pkg/action) directory of your package ,and define your custom service message.
+# Creating action server/client example
 
+In this example, we will demonstrate how to create a simple countdown action . The action allows a client to send a goal specifying a starting number, and the server counts down from that number to zero, providing feedback at each step and notifying the client when the countdown is complete.
+
+## 1- Creating custom action
+
+### 1.1- Define a custom action
+
+Define a service **`message`**: You need to define a service message that specifies the request and response types. Create a file named [**Countdown.action**](../ros_server_pkg/action/Countdown.action) in the [**action**](../ros_server_pkg/action) directory of your package ,and define your custom service message.
 
 ```bash
 # Request
@@ -14,7 +19,9 @@ bool is_finished
 int32 current_num
 
 ```
-### 2- Compile the message
+
+### 1.2- Compile the message(Update CmakeLists.txt)
+
 Make sure your **`CMakeLists.txt`** contains the following lines to ensure that your custom message is compiled:
 
 ```Cpp
@@ -37,8 +44,18 @@ generate_messages(
 )
 ```
 
-### 3-Write action server 
-countdown_server.py
+### 1.3- Update Package.xml
+
+- open package.xml and add these two lines :
+
+```xml
+<depend>actionlib</depend>
+<depend>actionlib_msgs</depend>
+```
+
+## 2- Creating Server and Client in Python
+
+### 2.1. Write python server node
 
 ```py
 #!/usr/bin/env python3
@@ -57,7 +74,7 @@ class CountdownServer():
         # Start the server
         self._action_server.start()
         rospy.loginfo("Starting Action Server")
-    
+  
         # Callback function to run after acknowledging a goal from the client
     def execute_callback(self, goal_handle):
         rospy.loginfo("Starting countdown…")
@@ -77,50 +94,54 @@ def main(args=None):
 if __name__ == '__main__':
    main()
 ```
+
 ---
-##  usage
+
+### 2.2- usage
+
 1. In a Terminal window, run **`roscore`**:
-    ```bash
-    roscore
-    ```
+   ```bash
+   roscore
+   ```
 2. In a second Terminal window, run your action server:
-    ```bash
-    rosrun ros_server_pkg countdown_server.py 
-    ```
+   ```bash
+   rosrun ros_server_pkg countdown_server.py 
+   ```
 3. In a third window, use **`rostopic`** pub to send a **`goal`**:
-    ```bash
-    rostopic pub /countdown/goal ros_server_pkg/CountdownActionGoal "header:
-      seq: 0
-      stamp:
-        secs: 0
-        nsecs: 0
-      frame_id: ''
-    goal_id:
-      stamp:
-        secs: 0
-        nsecs: 0
-      id: ''
-    goal:
-      starting_num: 4" 
+   ```bash
+   rostopic pub /countdown/goal ros_server_pkg/CountdownActionGoal "header:
+     seq: 0
+     stamp:
+       secs: 0
+       nsecs: 0
+     frame_id: ''
+   goal_id:
+     stamp:
+       secs: 0
+       nsecs: 0
+     id: ''
+   goal:
+     starting_num: 4" 
 
-    ```
+   ```
 4. If you wish to see the feedback and result, you will need two additional terminals. In one you will run:
-    ```bash
-    rostopic echo /countdown/feedback
-    ```
+   ```bash
+   rostopic echo /countdown/feedback
+   ```
 5. And in the last one, run:
-    ```bash
-    rostopic echo /countdown/result
-    ```
-Now, when you call the server, you should see something like this:
+   ```bash
+   rostopic echo /countdown/result
+   ```
 
+Now, when you call the server, you should see something like this:
 
 <p align="center">
 <img src="../images/10.png">
 
 Now that we’ve verified our server is running, let’s actually count down from our goal’s starting_num:
 
-now update [**countdown_server.py**](../ros_server_pkg/script/countdown_server.py):
+### 2.3- update [**countdown_server.py**](../ros_server_pkg/script/countdown_server.py):
+
 ```py
 #!/usr/bin/env python3
 
@@ -138,7 +159,7 @@ class CountdownServer():
         # Start the server
         self._action_server.start()
         rospy.loginfo("Starting Action Server")
-    
+  
         # Callback function to run after acknowledging a goal from the client
     def execute_callback(self, goal_handle):
         rospy.loginfo("Starting countdown…")
@@ -179,9 +200,9 @@ def main(args=None):
 
 if __name__ == '__main__':
    main()
-        
+  
 ```
- 
+
 now run it again [**Usage**](#usage)
 
 <p align="center">
@@ -192,8 +213,9 @@ now run it again [**Usage**](#usage)
 
 ---
 
-### 4-Write action clients
- [**countdown_client.py**](../ros_server_pkg/script/countdown_client.py):
+### 2.4- Write python client node
+
+ [**countdown_client.py**](../service_action_examples_package/script/countdown_client.py):
 
 ```py
 #!/usr/bin/env python3
@@ -246,15 +268,21 @@ def main(args=None):
 if __name__ == '__main__':
    main()
 ```
+
 ---
+
 You can see the **`countdown_server`** using the following command lines:
+
 ```bash
 rosrun ros_server_pkg countdown_server.py 
 ```
+
 You can see the **`countdown_client`** using the following command lines:
+
 ```bash
 rosrun ros_server_pkg countdown_client.py 
 ```
+
 Now, when you call the server and client, you should see something like this:
 
 <p align="center">
@@ -263,9 +291,124 @@ Now, when you call the server and client, you should see something like this:
 <p align="center">
 <img src="../images/14.png">
 
+## 3- Creating Server and Client in cpp
 
----
+### 3.1. Write Cpp server node
 
-### Reference
+[**countdown_server.cpp**](../service_action_examples_package/src/countdown_server.cpp)
+
+```cpp
+#include <ros/ros.h>
+#include <actionlib/server/simple_action_server.h>
+#include <service_action_examples_package/CountdownAction.h>
+#include <unistd.h>
+
+void executeCallback(const service_action_examples_package::CountdownGoalConstPtr &goal, 
+                     actionlib::SimpleActionServer<service_action_examples_package::CountdownAction> *as) {
+    ros::Rate r(1);
+    service_action_examples_package::CountdownFeedback feedback;
+    feedback.current_num = goal->starting_num;
+
+    while (feedback.current_num > 0) {
+        // Publish feedback
+        as->publishFeedback(feedback);
+
+        // Print log messages
+        ROS_INFO("Feedback: %d", feedback.current_num);
+
+        // Decrement the feedback message's current_num
+        feedback.current_num -= 1;
+
+        // Wait a second before counting down to the next number
+        r.sleep();
+    }
+
+    // Final feedback message
+    as->publishFeedback(feedback);
+    ROS_INFO("Feedback: %d", feedback.current_num);
+    ROS_INFO("Done!");
+
+    service_action_examples_package::CountdownResult result;
+    result.is_finished = true;
+    // Indicate that the goal was successful
+    as->setSucceeded(result);
+}
+
+int main(int argc, char** argv) {
+    ros::init(argc, argv, "countdown_server_cpp");
+    ros::NodeHandle nh;
+
+    actionlib::SimpleActionServer<service_action_examples_package::CountdownAction> server(nh, "countdown", 
+            boost::bind(&executeCallback, _1, &server), false);
+
+    server.start();
+    ROS_INFO("Starting Action Server cpp");
+    ros::spin();
+
+    return 0;
+}
+
+```
+
+### 3.1. Write Cpp client node
+
+[**countdown_client.cpp**](../service_action_examples_package/src/countdown_client.cpp)
+
+```cpp
+#include <ros/ros.h>
+#include <actionlib/client/simple_action_client.h>
+#include <service_action_examples_package/CountdownAction.h>
+
+// This callback function will be called when feedback is received from the action server
+void feedbackCallback(const service_action_examples_package::CountdownFeedbackConstPtr& feedback) {
+    ROS_INFO("Feedback: %d", feedback->current_num);
+}
+
+// This callback function will be called when the action becomes active
+void activeCallback() {
+    ROS_INFO("Goal just went active");
+}
+
+// This callback function will be called when the action is done
+void doneCallback(const actionlib::SimpleClientGoalState& state,
+                  const service_action_examples_package::CountdownResultConstPtr& result) {
+    ROS_INFO("Action finished: %s", state.toString().c_str());
+    ROS_INFO("Result: %d", result->is_finished);
+}
+
+int main(int argc, char** argv) {
+    ros::init(argc, argv, "countdown_client_cpp");
+
+    if (argc != 2) {
+        ROS_INFO("Usage: countdown_client <starting_num>");
+        return 1;
+    }
+
+    int starting_num = atoi(argv[1]);
+
+    actionlib::SimpleActionClient<service_action_examples_package::CountdownAction> client("countdown", true);
+
+    ROS_INFO("Waiting for action server to start.");
+    client.waitForServer();
+
+    service_action_examples_package::CountdownGoal goal;
+    goal.starting_num = starting_num;
+
+    ROS_INFO("Sending goal: %d", starting_num);
+    client.sendGoal(goal, &doneCallback, &activeCallback, &feedbackCallback);
+
+    // Wait for the action to return
+    bool finished_before_timeout = client.waitForResult(ros::Duration(30.0));
+
+    if (!finished_before_timeout) {
+        ROS_INFO("Action did not finish before the timeout.");
+    }
+
+    return 0;
+}
+
+```
+
+## 4- Reference
+
 [ROS Actions](https://foxglove.dev/blog/creating-ros1-actions)
-
