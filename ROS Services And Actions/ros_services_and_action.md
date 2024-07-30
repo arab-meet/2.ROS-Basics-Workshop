@@ -449,6 +449,6 @@ ac.sendGoal(goal, &doneCallback, &activeCallback, &feedbackCallback);
 
 ## 3. Hands-on
 
-### 3.1. [Exmaple To Creating action server/clients](/source/example_action.md)
+### 3.1. [Exmaple To Creating action server/clients](source/example_action.md)
 
 ### 3.2. [Action Task](source/task_custom_action/Task_action.md)
