@@ -6,7 +6,7 @@ In this example, we will demonstrate how to create a simple countdown action . T
 
 ### 1.1- Define a custom action
 
-Define a service **`message`**: You need to define a service message that specifies the request and response types. Create a file named [**Countdown.action**](../ros_server_pkg/action/Countdown.action) in the [**action**](../ros_server_pkg/action) directory of your package ,and define your custom service message.
+Define a service **`message`**: You need to define a service message that specifies the request and response types. Create a file named [**Countdown.action**](../service_action_examples_package/action/Countdown.action) in the [**action**](../service_action_examples_package/action) directory of your package ,and define your custom service message.
 
 ```bash
 # Request
@@ -63,13 +63,13 @@ generate_messages(
 import rospy
 import actionlib
 import time
-import ros_server_pkg.msg
+import service_action_examples_package.msg
 
 class CountdownServer():
     # Create Feedback and Result messages
     def __init__(self):
         # Create the server
-        self._action_server = actionlib.SimpleActionServer('countdown', ros_server_pkg.msg.CountdownAction, self.execute_callback, False)
+        self._action_server = actionlib.SimpleActionServer('countdown', service_action_examples_package.msg.CountdownAction, self.execute_callback, False)
 
         # Start the server
         self._action_server.start()
@@ -80,7 +80,7 @@ class CountdownServer():
         rospy.loginfo("Starting countdown…")
 
 
-        result = ros_server_pkg.msg.CountdownResult()
+        result = service_action_examples_package.msg.CountdownResult()
         result.is_finished = True
         # Indicate that the goal was successful
         self._action_server.set_succeeded(result)
@@ -105,11 +105,11 @@ if __name__ == '__main__':
    ```
 2. In a second Terminal window, run your action server:
    ```bash
-   rosrun ros_server_pkg countdown_server.py 
+   rosrun service_action_examples_package countdown_server.py 
    ```
 3. In a third window, use **`rostopic`** pub to send a **`goal`**:
    ```bash
-   rostopic pub /countdown/goal ros_server_pkg/CountdownActionGoal "header:
+   rostopic pub /countdown/goal service_action_examples_package/CountdownActionGoal "header:
      seq: 0
      stamp:
        secs: 0
@@ -140,7 +140,7 @@ Now, when you call the server, you should see something like this:
 
 Now that we’ve verified our server is running, let’s actually count down from our goal’s starting_num:
 
-### 2.3- update [**countdown_server.py**](../ros_server_pkg/script/countdown_server.py):
+### 2.3- update [**countdown_server.py**](../service_action_examples_package/scripts/countdown_server.py) :
 
 ```py
 #!/usr/bin/env python3
@@ -148,13 +148,13 @@ Now that we’ve verified our server is running, let’s actually count down fro
 import rospy
 import actionlib
 import time
-import ros_server_pkg.msg
+import service_action_examples_package.msg
 
 class CountdownServer():
     # Create Feedback and Result messages
     def __init__(self):
         # Create the server
-        self._action_server = actionlib.SimpleActionServer('countdown', ros_server_pkg.msg.CountdownAction, self.execute_callback, False)
+        self._action_server = actionlib.SimpleActionServer('countdown', service_action_examples_package.msg.CountdownAction, self.execute_callback, False)
 
         # Start the server
         self._action_server.start()
@@ -165,7 +165,7 @@ class CountdownServer():
         rospy.loginfo("Starting countdown…")
 
         # Initiate the feedback message's current_num as the action request's starting_num
-        feedback_msg = ros_server_pkg.msg.CountdownFeedback()
+        feedback_msg = service_action_examples_package.msg.CountdownFeedback()
         feedback_msg.current_num = goal_handle.starting_num
 
         while feedback_msg.current_num>0:
@@ -187,7 +187,7 @@ class CountdownServer():
         rospy.loginfo('Feedback: {0}'.format(feedback_msg.current_num))
         rospy.loginfo('Done!')
 
-        result = ros_server_pkg.msg.CountdownResult()
+        result = service_action_examples_package.msg.CountdownResult()
         result.is_finished = True
         # Indicate that the goal was successful
         self._action_server.set_succeeded(result)
@@ -203,7 +203,7 @@ if __name__ == '__main__':
   
 ```
 
-now run it again [**Usage**](#usage)
+now run it again [**Usage**](#22--usage)
 
 <p align="center">
 <img src="../images/11.png">
@@ -215,22 +215,22 @@ now run it again [**Usage**](#usage)
 
 ### 2.4- Write python client node
 
- [**countdown_client.py**](../service_action_examples_package/script/countdown_client.py):
+ [**countdown_client.py**](../service_action_examples_package/scripts/countdown_client.py):
 
 ```py
 #!/usr/bin/env python3
 import rospy
 import actionlib
-import ros_server_pkg.msg
+import service_action_examples_package.msg
 
 class CountdownClient():
     def __init__(self):
        # Initializes "countdown_client" node
-       self._action_client = actionlib.SimpleActionClient("countdown", ros_server_pkg.msg.CountdownAction)
+       self._action_client = actionlib.SimpleActionClient("countdown", service_action_examples_package.msg.CountdownAction)
 
     # Waits for server to be available, then sends goal
     def send_goal(self, starting_num):
-        goal_msg = ros_server_pkg.msg.CountdownGoal()
+        goal_msg = service_action_examples_package.msg.CountdownGoal()
         goal_msg.starting_num = starting_num
         rospy.loginfo('Starting at: {0}'.format(starting_num))
         rospy.loginfo('Waiting for server...')
@@ -274,13 +274,13 @@ if __name__ == '__main__':
 You can see the **`countdown_server`** using the following command lines:
 
 ```bash
-rosrun ros_server_pkg countdown_server.py 
+rosrun service_action_examples_package countdown_server.py 
 ```
 
 You can see the **`countdown_client`** using the following command lines:
 
 ```bash
-rosrun ros_server_pkg countdown_client.py 
+rosrun service_action_examples_package countdown_client.py 
 ```
 
 Now, when you call the server and client, you should see something like this:
