@@ -3,13 +3,13 @@
 import rospy
 import actionlib
 import time
-import ros_server_pkg.msg
+import service_action_examples_package.msg
 
 class CountdownServer():
     # Create Feedback and Result messages
     def __init__(self):
         # Create the server
-        self._action_server = actionlib.SimpleActionServer('countdown', ros_server_pkg.msg.CountdownAction, self.execute_callback, False)
+        self._action_server = actionlib.SimpleActionServer('countdown', service_action_examples_package.msg.CountdownAction, self.execute_callback, False)
 
         # Start the server
         self._action_server.start()
@@ -20,7 +20,7 @@ class CountdownServer():
         rospy.loginfo("Starting countdown…")
 
         # Initiate the feedback message's current_num as the action request's starting_num
-        feedback_msg = ros_server_pkg.msg.CountdownFeedback()
+        feedback_msg = service_action_examples_package.msg.CountdownFeedback()
         feedback_msg.current_num = goal_handle.starting_num
 
         while feedback_msg.current_num>0:
@@ -42,7 +42,7 @@ class CountdownServer():
         rospy.loginfo('Feedback: {0}'.format(feedback_msg.current_num))
         rospy.loginfo('Done!')
 
-        result = ros_server_pkg.msg.CountdownResult()
+        result = service_action_examples_package.msg.CountdownResult()
         result.is_finished = True
         # Indicate that the goal was successful
         self._action_server.set_succeeded(result)

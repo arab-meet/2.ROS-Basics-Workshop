@@ -2,16 +2,16 @@
 
 import rospy
 import actionlib
-import ros_server_pkg.msg
+import service_action_examples_package.msg
 
 class CountdownClient():
     def __init__(self):
        # Initializes "countdown_client" node
-       self._action_client = actionlib.SimpleActionClient("countdown", ros_server_pkg.msg.CountdownAction)
+       self._action_client = actionlib.SimpleActionClient("countdown", service_action_examples_package.msg.CountdownAction)
 
     # Waits for server to be available, then sends goal
     def send_goal(self, starting_num):
-        goal_msg = ros_server_pkg.msg.CountdownGoal()
+        goal_msg = service_action_examples_package.msg.CountdownGoal()
         goal_msg.starting_num = starting_num
         rospy.loginfo('Starting at: {0}'.format(starting_num))
         rospy.loginfo('Waiting for server...')
