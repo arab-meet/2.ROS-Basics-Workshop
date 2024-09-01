@@ -1,8 +1,8 @@
 # **ROS Services**
 
-Author:
+Author: Sherif fathey
 
-Review :
+Review: KG
 
 ## 1. Introduction
 
@@ -23,7 +23,7 @@ Review :
 
 <p align="center"> <img src="images/srv2.png">
 
-### 2.1. Service Files
+### 2.1 Service Files
 
 The message types used with services are derived from the eligible .msg types, as discussed in the previous section of this workshop. However, service messages are defined in a specialized file format known as a **.srv** file.
 
@@ -65,7 +65,7 @@ int64 B
 int64 Sum
 ```
 
-### 2.2. Command Line
+### 2.2 Command Line
 
 ROS has two command-line tools to work with services, **`rossrv`** and **`rosservice`** .
 
@@ -76,51 +76,51 @@ With rossrv , we can see information about the services data structure,With ross
 
 - **List available services :**
 
-```
-$ rosservice list
-```
+  ```
+  rosservice list
+  ```
 
 - **Show the type of the service (what messages it takes)**
 
-```
-$ rosservice type /service_name
-```
+  ```
+  rosservice type /service_name
+  ```
 
 - **Call a service**
 
-```
-$ rosservice call /service_name 
-```
+  ```
+  rosservice call /service_name 
+  ```
 
 - **Print service arguments**
 
-```
-$ rosservice args /service
-```
+  ```
+  rosservice args /service
+  ```
 
 - **find services by the service type**
 
-```
-rosservice find msg-type
-```
+  ```
+  rosservice find msg-type
+  ```
 
 - **print information about the service**
 
-```
-rosservice info /service
-```
+  ```
+  rosservice info /service
+  ```
 
 - **print the service type**
 
-```
-rosservice type /service
-```
+  ```
+  rosservice type /service
+  ```
 
 - **prints the service ROSRPC URI**
 
-```
-rosservice uri /service
-```
+  ```
+  rosservice uri /service
+  ```
 
 ### 2.3. Some Practice
 
@@ -269,9 +269,9 @@ We then obtain the following result:
 
 ## 4.Hands-On
 
-### 4.1. [Exmaple For Creating custom services](source/exmaple_custom_services.md)
+### 4.1 [Exmaple For Creating custom services](source/exmaple_custom_services.md)
 
-### 4.2. [Service Task](source/task_custom_service/Task_service.md)
+### 4.2 [Service Task](source/task_custom_service/Task_service.md)
 
 ---
 
@@ -286,7 +286,7 @@ Here's how `sys.argv` works:
 
 This is why, in the ROS Python service example, you see references to `sys.argv[1]`, `sys.argv[2]`, etc., to access the command-line arguments passed to the script.
 
-    -------------------------------------------------------------------------------------------------------------------------
+  
 
 # ROS Actions
 
@@ -452,3 +452,9 @@ ac.sendGoal(goal, &doneCallback, &activeCallback, &feedbackCallback);
 ### 3.1. [Exmaple To Creating action server/clients](source/example_action.md)
 
 ### 3.2. [Action Task](source/task_custom_action/Task_action.md)
+
+
+## [Next Topic →](<../ROS Launch File/launch.md>)
+
+## [↩Back to main](../README.md)
+

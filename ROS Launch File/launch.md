@@ -8,7 +8,7 @@ there a better and faster way to run your nodes and other application related to
 ``here Examble normal way VS launch file Way``
 
 
-<div style="display: flex; justify-content: center;">
+<!-- <div style="display: flex; justify-content: center;">
     <div style="text-align: center;">
         <h3>Normal Way</h3>
         <br>
@@ -19,7 +19,11 @@ there a better and faster way to run your nodes and other application related to
         <br>
         <img src="./images/launch_file_way.gif" alt="Second GIF" style="width: 80%;">
     </div>
-</div>
+</div> -->
+
+| Normal Way              | Launch file way                         |
+| ------------------------------ | ------------------------------ | 
+| ![Alt Text](./images/normal_way_run_node.gif)  | ![Alt Text](./images/launch_file_way.gif)     |
 
 ### Launch files
 
@@ -61,6 +65,8 @@ In the node tag `<node />`
 - **type** : writes the original name of the file of ROS node.
 - **name** : is a name you can give as you like. You can rename it so you can run two of the same ROS nodes with 
 
+
+#### [Example launch file ](src/light_robot/launch/pubsub1.launch)
 ```XML
 <!-- example -->
 
@@ -109,6 +115,8 @@ this all comman tags used in launch files
 Here in this launch file if groub_1 is **true** two nodes are published and remap done and also load param_1 in parameter server
 if groub_1 is **false** include other file in our launch file and the content in the other launch file will excuted and also load param_1 but with value 10
 
+#### [main_file](src/light_robot/launch/main_file.launch)
+
 ```XML
 
 <launch>
@@ -152,7 +160,7 @@ rosnode list
 /basic_simple_talker
 /rosout
 ```
-## rqt tools
+# rqt tools
 `rqt` is a powerful framework within the Robot Operating System (ROS) that allows you to create and manage graphical user interface (GUI) tools as plugins.
 
 Commonly Used rqt Plugins:
@@ -215,4 +223,8 @@ rqt_bag
 # References:
 [ros launch](http://wiki.ros.org/roslaunch)
 
-### [&lt;-Back to main](../README.md)
+
+## [Next Topic →](<../ROS bags/bag_file.md>)
+
+## [↩Back to main](../README.md)
+
