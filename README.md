@@ -33,10 +33,3 @@ server and also several other nodes can be started .
 ## [E - ROS Bags](/ROS%20bags/bag_file.md)
 
 This is a set of tools for recording from and playing back to ROS topics. It is intended to be high performance and avoids deserialization and reserialization of the messages.
-
-
-
-
-
-
-
