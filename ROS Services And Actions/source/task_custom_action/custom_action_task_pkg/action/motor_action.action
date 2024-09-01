@@ -1,0 +1,8 @@
+#goal encoder count
+int32 goal_encoder_count
+---
+#result of the action
+int32 final_encoder_count
+---
+#feedback of the action
+int32 current_encoder_count
