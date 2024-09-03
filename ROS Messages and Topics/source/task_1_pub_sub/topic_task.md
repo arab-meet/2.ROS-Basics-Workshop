@@ -72,7 +72,7 @@ you need to extract data with right format `number.data`
 
 [for full code ](scripts)
 
-## [<-Back to main](../../ros_topic_and_messages.md)
+## [↩Back to main](../../ros_topic_and_messages.md)
 
 
 

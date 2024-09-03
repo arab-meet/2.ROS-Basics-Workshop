@@ -2,11 +2,11 @@
 
 **Description:**
 
-    In this example we will create a package to publish and subscribe data for a robot position with a (X,Yand theta) componnent. This nodes (publish & subscribe) can be preformed in Python and Cpp as shown below.
+In this example we will create a package to publish and subscribe data for a robot position with a (X,Yand theta) componnent. This nodes (publish & subscribe) can be preformed in Python and Cpp as shown below.
 
-### **1-Create a ROS Package**
+## 1. Create a ROS Package :
 
-    First, create a new ROS package if you don't already have one. You can do this using the`catkin_create_pkg` command
+First, create a new ROS package if you don't already have one. You can do this using the `catkin_create_pkg` command
 
 ```bash
 mkdir -p  catkin_ws/src
@@ -16,7 +16,9 @@ cd ~/catkin_ws/src
 catkin_create_pkg ros_topic_and_messages_pkg std_msgs rospy roscpp
 ```
 
-### 2- Define a custom message :
+
+
+## 2. Define a custom message :
 
 Let's say you want to create a custom message type for a sensor that measures temperature and humidity.
 Create a file named [Position.msg](../ros_topic_and_messages_pkg/msg/Position.msg) in your ROS package's [msg](../ros_topic_and_messages_pkg/msg) directory:
@@ -36,30 +38,31 @@ float64 y
 float64 theta
 ```
 
-### 3- Compile the message
+
+## 3. Compile the message:
 
 Make sure your [CMakeLists.txt ](../ros_topic_and_messages_pkg/CMakeLists.txt) contains the following lines to ensure that your custom message is compiled:
 
 ```Cpp
 find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  roscpp
-  rospy
-  std_msgs
+message_generation
+roscpp
+rospy
+std_msgs
 )
 add_message_files(
-  FILES
-  Position.msg
+FILES
+Position.msg
 )
 generate_messages(
-  DEPENDENCIES
-  std_msgs
+DEPENDENCIES
+std_msgs
 )
 ```
 
-### 4-Write publisher and subscriber nodes
 
-#### 1- Python Node
+## 4. Write publisher and subscriber nodes:
+### A . Python Node
 
 first creat a [script ](../ros_topic_and_messages_pkg/script) folder to create the .py file in it
 
@@ -70,7 +73,7 @@ cd script
 touch publish_robot.py
 ```
 
-[publish_robot ](../ros_topic_and_messages_pkg/script/publish_robot.py):
+### [publish_robot ](../ros_topic_and_messages_pkg/script/publish_robot.py):
 
 ```py
 #!/usr/bin/env python3
@@ -101,7 +104,7 @@ if __name__ == '__main__':
 
 ```
 
-[subscribe_robot ](../ros_topic_and_messages_pkg/script/subscribe_robot.py):
+### [subscribe_robot ](../ros_topic_and_messages_pkg/script/subscribe_robot.py):
 
 ```bash
 touch subscribe_robot.py
@@ -127,31 +130,29 @@ if __name__ == '__main__':
 
 ```
 
-#### Run the Package
+### Run the Package 
 
-* Open a terminal an run the roscore by the following command
+1. Open a terminal an run the roscore by the following command
 
-```bash
-roscore
-```
+   ```bash
+   roscore
+   ```
+2. In Another terminal go to the workspace created and run the publisher by using the following commands
 
-* In Another terminal go to the workspace created and run the publisher by using the following commands
+   ```bash
+   cd /catkin_ws
+   source devel/setup.bash
+   rosrun rosrun ros_topic_and_messages_pkg publish_robot.py
+   ```
+3. In Another terminal go to the workspace created and run the subscriber by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg publish_robot.py
-```
+   ```bash
+   cd /catkin_ws
+   source devel/setup.bash
+   rosrun rosrun ros_topic_and_messages_pkg subscriber_robot.py
+   ```
 
-* In Another terminal go to the workspace created and run the subscriber by using the following commands
-
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg subscriber_robot.py
-```
-
-#### 2- CPP Node
+### B - CPP Node
 
 first creat a [src ](../ros_topic_and_messages_pkg/src) folder to create the .cpp file in it
 
@@ -162,7 +163,7 @@ cd src
 touch publish_robot.cpp
 ```
 
-[publish_robot.cpp](../ros_topic_and_messages_pkg/src/publish_robot.cpp):
+### [publish_robot.cpp](../ros_topic_and_messages_pkg/src/publish_robot.cpp):
 
 ```cpp
 #include <ros/ros.h>
@@ -191,7 +192,7 @@ int main(int argc, char** argv)
 
 ```
 
-[subscribe_robot ](../ros_topic_and_messages_pkg/src/):
+### [subscribe_robot ](../ros_topic_and_messages_pkg/src/subscribe_robot.cpp):
 
 ```bash
 touch subscribe_robot.cpp
@@ -220,49 +221,47 @@ int main(int argc, char** argv)
 Edit the [CMakeLists.txt ](../ros_topic_and_messages_pkg/CMakeLists.txt) file by adding the following lines in the file in the build section:
 
 ```bash
- add_executable(publish_robot src/publish_robot.cpp)
- add_executable(subscribe_robot src/subscribe_robot.cpp)
+add_executable(publish_robot src/publish_robot.cpp)
+add_executable(subscribe_robot src/subscribe_robot.cpp)
 ```
 
 ```bash
- add_dependencies(publish_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
- add_dependencies(subscribe_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(publish_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(subscribe_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 ```
 
 ```bash
- target_link_libraries(publish_robot
-   ${catkin_LIBRARIES}
- )
- target_link_libraries(subscribe_robot
-   ${catkin_LIBRARIES}
- )
+target_link_libraries(publish_robot
+${catkin_LIBRARIES}
+)
+target_link_libraries(subscribe_robot
+${catkin_LIBRARIES}
+)
 ```
 
-### 5- Run the Package
+## 5- Run the Package
 
 * Open a terminal an run the roscore by the following command
 
-```bash
-roscore
-```
+    ```bash
+    roscore
+    ```
 
 * In Another terminal go to the workspace created and run the publisher by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg publish_robot
-```
+    ```bash
+    cd /catkin_ws
+    source devel/setup.bash
+    rosrun rosrun ros_topic_and_messages_pkg publish_robot
+    ```
 
 * In Another terminal go to the workspace created and run the subscriber by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg subscriber_robot
-```
-
-
+    ```bash
+    cd /catkin_ws
+    source devel/setup.bash
+    rosrun rosrun ros_topic_and_messages_pkg subscriber_robot
+    ```
 
 ## Expected Output
 
@@ -270,10 +269,8 @@ Here is the expected output of this example
 
 ![1721684692606](image/example_custom_message_robot/1721684692606.png)
 
-
-
 ![alt text](../images/7.png)
 
-## [&lt;- Exmaple 2 To Creating custom messages_sensor)](../source/example_custom_message_sensor.md)
+## [ Exmaple 2 To Creating custom messages_sensor→](../source/example_custom_message_sensor.md)
 
-## [&lt;-Back to main](../ros_topic_and_messages.md)
+## [↩Back to main](../ros_topic_and_messages.md)

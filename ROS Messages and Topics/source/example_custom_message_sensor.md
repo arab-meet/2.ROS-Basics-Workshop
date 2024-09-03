@@ -1,10 +1,10 @@
-## [&lt;- Exmaple 1 To Creating custom messages_robot](../source/example_custom_message_robot.md)
+## [↩ Exmaple 1 To Creating custom messages_robot](../source/example_custom_message_robot.md)
 
-**Note:** this example is continuation of the previous example.
+> **Note:** this example is continuation of the previous example.
 
 ## Example 2 (Creating custom messages for sensor data)
 
-#### 1- Define a custom message :
+## 1. Define a custom message :
 
 Let's say you want to create a custom message type for a sensor that measures temperature and humidity.
 Create a file named [SensorData.msg](../ros_topic_and_messages_pkg/msg/SensorData.msg) in your ROS package's [msg](../ros_topic_and_messages_pkg/msg) directory:
@@ -22,7 +22,7 @@ float32 temperature
 float32 humidity
 ```
 
-### 2- Compile the message
+## 2. Compile the message
 
 Make sure your `CMakeLists.txt` contains the following lines to ensure that your custom message is compiled:
 
@@ -43,9 +43,9 @@ generate_messages(
 )
 ```
 
-### 3-Write publisher and subscriber nodes
+## 3. Write publisher and subscriber nodes
 
-#### 1- Python node:
+### A. Python node:
 
 In the [script ](../ros_topic_and_messages_pkg/script) file create a file named by [publish_sensor_data.py](../ros_topic_and_messages_pkg/script/publish_sensor_data.py) by using the following commands:
 
@@ -113,29 +113,29 @@ if __name__ == '__main__':
 
 #### Run the Package
 
-* Open a terminal an run the roscore by the following command
+- Open a terminal an run the roscore by the following command
 
-```bash
-roscore
-```
+  ```bash
+  roscore
+  ```
 
-* In Another terminal go to the workspace created and run the publisher by using the following commands
+- In Another terminal go to the workspace created and run the publisher by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg publish_robot_data.py
-```
+  ```bash
+  cd /catkin_ws
+  source devel/setup.bash
+  rosrun rosrun ros_topic_and_messages_pkg publish_robot_data.py
+  ```
 
-* In Another terminal go to the workspace created and run the subscriber by using the following commands
+- In Another terminal go to the workspace created and run the subscriber by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg subscriber_robot_data.py
-```
+  ```bash
+  cd /catkin_ws
+  source devel/setup.bash
+  rosrun rosrun ros_topic_and_messages_pkg subscriber_robot_data.py
+  ```
 
-#### 2- CPP Node
+### B. CPP Node
 
 In the [src ](../ros_topic_and_messages_pkg/src) file create a file named by [publish_sensor_data.cpp](../ros_topic_and_messages_pkg/src/publish_sensor_data.cpp) by using the following commands:
 
@@ -155,7 +155,7 @@ Add the below code in the file:
 void publish_sensor_data() {
     ros::init(argc, argv, "sensor_publisher");
     ros::NodeHandle nh;
-    ros::Publisher pub = nh.advertise<ros_topic_and_messages_pkg::SensorData>("sensor_topic", 10);
+    ros::Publisher pub = nh.advertise<ros_topic_and←_messages_pkg::SensorData>("sensor_topic", 10);
     ros::Rate rate(1);  // 1 Hz
 
     while (ros::ok()) {
@@ -232,31 +232,29 @@ Edit the [CMakeLists.txt ](../ros_topic_and_messages_pkg/CMakeLists.txt) file by
  )
 ```
 
-### 5- Run the Package
+## 5. Run the Package
 
-* Open a terminal an run the roscore by the following command
+- Open a terminal an run the roscore by the following command
 
-```bash
-roscore
-```
+  ```bash
+  roscore
+  ```
 
-* In Another terminal go to the workspace created and run the publisher by using the following commands
+- In Another terminal go to the workspace created and run the publisher by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg publish_robot_data
-```
+  ```bash
+  cd /catkin_ws
+  source devel/setup.bash
+  rosrun rosrun ros_topic_and_messages_pkg publish_robot_data
+  ```
 
-* In Another terminal go to the workspace created and run the subscriber by using the following commands
+- In Another terminal go to the workspace created and run the subscriber by using the following commands
 
-```bash
-cd /catkin_ws
-source devel/setup.bash
-rosrun rosrun ros_topic_and_messages_pkg subscriber_robot_data
-```
-
-
+  ```bash
+  cd /catkin_ws
+  source devel/setup.bash
+  rosrun rosrun ros_topic_and_messages_pkg subscriber_robot_data
+  ```
 
 ## Expected Output
 
@@ -266,4 +264,4 @@ Here is the expected output of this example
 
 ![alt text](../images/5.png)
 
-## [&lt;-Back to main](../ros_topic_and_messages.md)
+## [↩Back to main](../ros_topic_and_messages.md)
